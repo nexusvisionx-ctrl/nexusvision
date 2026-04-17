@@ -1,787 +1,151 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nexus Control - Professional VPN Control Panel</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-        
-        /* Header */
-        header {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
-        }
-        
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px 0;
-        }
-        
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #667eea;
-        }
-        
-        .logo i {
-            margin-right: 10px;
-        }
-        
-        .nav-links a {
-            margin-left: 30px;
-            text-decoration: none;
-            color: #333;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        
-        .nav-links a:hover {
-            color: #667eea;
-        }
-        
-        /* Hero Section */
-        .hero {
-            padding: 150px 0 100px;
-            text-align: center;
-            color: white;
-        }
-        
-        .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-        
-        .hero p {
-            font-size: 20px;
-            margin-bottom: 40px;
-            opacity: 0.95;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background: #f39c12;
-            color: white;
-            padding: 15px 40px;
-            font-size: 18px;
-            font-weight: bold;
-            border-radius: 50px;
-            text-decoration: none;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(243, 156, 18, 0.4);
-        }
-        
-        .cta-button:hover {
-            background: #e67e22;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(243, 156, 18, 0.5);
-        }
-        
-        /* Features Section */
-        .features {
-            background: white;
-            padding: 80px 0;
-        }
-        
-        .features h2 {
-            text-align: center;
-            font-size: 36px;
-            margin-bottom: 60px;
-            color: #333;
-        }
-        
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
-        }
-        
-        .feature-card {
-            background: #f8f9fa;
-            padding: 40px;
-            border-radius: 15px;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-        
-        .feature-card i {
-            font-size: 48px;
-            color: #667eea;
-            margin-bottom: 20px;
-        }
-        
-        .feature-card h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-        }
-        
-        /* Pricing Section */
-        .pricing {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-        }
-        
-        .pricing h2 {
-            text-align: center;
-            font-size: 36px;
-            margin-bottom: 60px;
-            color: #333;
-        }
-        
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        .pricing-card {
-            background: white;
-            border-radius: 20px;
-            padding: 40px;
-            text-align: center;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .pricing-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-        }
-        
-        .pricing-card.featured {
-            border: 3px solid #667eea;
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
-        }
-        
-        .pricing-card.featured:hover {
-            transform: scale(1.05) translateY(-10px);
-        }
-        
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        .animate-on-scroll {
-            animation: fadeInUp 0.6s ease forwards;
-        }
-        
-        /* Testimonials Section */
-        .testimonials {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 80px 0;
-            color: white;
-        }
-        
-        .testimonials h2 {
-            text-align: center;
-            font-size: 36px;
-            margin-bottom: 60px;
-        }
-        
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
-        
-        .testimonial-card {
-            background: rgba(255,255,255,0.1);
-            backdrop-filter: blur(10px);
-            padding: 30px;
-            border-radius: 15px;
-            border: 1px solid rgba(255,255,255,0.2);
-        }
-        
-        .testimonial-card .stars {
-            color: #f1c40f;
-            margin-bottom: 15px;
-        }
-        
-        .testimonial-card p {
-            font-style: italic;
-            margin-bottom: 15px;
-        }
-        
-        .testimonial-card .author {
-            font-weight: bold;
-            opacity: 0.9;
-        }
-        
-        /* Stats Section */
-        .stats {
-            background: white;
-            padding: 60px 0;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 30px;
-            text-align: center;
-        }
-        
-        .stat-item h3 {
-            font-size: 48px;
-            color: #667eea;
-            font-weight: bold;
-        }
-        
-        .stat-item p {
-            color: #666;
-            font-size: 16px;
-        }
-        
-        /* Screenshot Placeholder */
-        .screenshot-section {
-            background: #f8f9fa;
-            padding: 80px 0;
-            text-align: center;
-        }
-        
-        .screenshot-section h2 {
-            font-size: 36px;
-            margin-bottom: 40px;
-            color: #333;
-        }
-        
-        .screenshot-placeholder {
-            max-width: 900px;
-            margin: 0 auto;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 20px;
-            padding: 60px;
-            color: white;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
-        }
-        
-        .screenshot-placeholder i {
-            font-size: 80px;
-            margin-bottom: 20px;
-        }
-        
-        /* FAQ Section */
-        .faq {
-            background: white;
-            padding: 80px 0;
-        }
-        
-        .faq h2 {
-            text-align: center;
-            font-size: 36px;
-            margin-bottom: 60px;
-        }
-        
-        .faq-item {
-            max-width: 800px;
-            margin: 0 auto 20px;
-            border: 1px solid #e0e0e0;
-            border-radius: 10px;
-            overflow: hidden;
-        }
-        
-        .faq-question {
-            background: #f8f9fa;
-            padding: 20px;
-            cursor: pointer;
-            font-weight: 600;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .faq-answer {
-            padding: 20px;
-            display: none;
-        }
-        
-        .faq-item.active .faq-answer {
-            display: block;
-        }
-        
-        .badge {
-            position: absolute;
-            top: 20px;
-            right: -30px;
-            background: #667eea;
-            color: white;
-            padding: 5px 40px;
-            transform: rotate(45deg);
-            font-size: 12px;
-            font-weight: bold;
-        }
-        
-        .pricing-card h3 {
-            font-size: 28px;
-            margin-bottom: 10px;
-            color: #333;
-        }
-        
-        .price {
-            font-size: 48px;
-            font-weight: bold;
-            color: #667eea;
-            margin: 20px 0;
-        }
-        
-        .price span {
-            font-size: 16px;
-            color: #666;
-            font-weight: normal;
-        }
-        
-        .pricing-card ul {
-            list-style: none;
-            margin: 30px 0;
-            text-align: left;
-        }
-        
-        .pricing-card ul li {
-            padding: 10px 0;
-            border-bottom: 1px solid #eee;
-        }
-        
-        .pricing-card ul li i {
-            color: #27ae60;
-            margin-right: 10px;
-        }
-        
-        .buy-button {
-            display: block;
-            width: 100%;
-            padding: 15px;
-            background: #667eea;
-            color: white;
-            text-decoration: none;
-            border-radius: 10px;
-            font-weight: bold;
-            font-size: 16px;
-            transition: background 0.3s;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .buy-button:hover {
-            background: #5a67d8;
-        }
-        
-        .buy-button.featured-btn {
-            background: #f39c12;
-        }
-        
-        .buy-button.featured-btn:hover {
-            background: #e67e22;
-        }
-        
-        /* Buy Section */
-        #buy {
-            background: white;
-            padding: 80px 0;
-            text-align: center;
-        }
-        
-        #buy h2 {
-            font-size: 36px;
-            margin-bottom: 30px;
-        }
-        
-        #buy p {
-            font-size: 18px;
-            color: #666;
-            max-width: 600px;
-            margin: 0 auto 40px;
-        }
-        
-        /* Footer */
-        footer {
-            background: #2c3e50;
-            color: white;
-            padding: 40px 0;
-            text-align: center;
-        }
-        
-        .footer-links {
-            margin-bottom: 20px;
-        }
-        
-        .footer-links a {
-            color: #bdc3c7;
-            text-decoration: none;
-            margin: 0 15px;
-            transition: color 0.3s;
-        }
-        
-        .footer-links a:hover {
-            color: white;
-        }
-        
-        footer p {
-            color: #95a5a6;
-            font-size: 14px;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 32px;
-            }
-            
-            .hero p {
-                font-size: 16px;
-            }
-            
-            .pricing-card.featured {
-                transform: scale(1);
-            }
-            
-            .nav-links {
-                display: none;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<title>Nexus Control VPN</title>
+<style>
+
+body {
+    margin: 0;
+    font-family: Arial;
+    background: #0f172a;
+    color: white;
+}
+
+/* HERO */
+.hero {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.hero h1 {
+    font-size: 40px;
+}
+
+.hero p {
+    color: #94a3b8;
+}
+
+/* PRICING */
+.pricing {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 40px;
+}
+
+.card {
+    background: #1e293b;
+    padding: 20px;
+    width: 260px;
+    border-radius: 12px;
+}
+
+.card h2 {
+    margin: 0;
+}
+
+.price {
+    font-size: 22px;
+    color: #38bdf8;
+    margin: 10px 0;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 10px;
+    background: #38bdf8;
+    border: none;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+/* FEATURES */
+.features {
+    padding: 40px;
+    text-align: center;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 15px;
+    padding: 20px;
+}
+
+.box {
+    background: #1e293b;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+</style>
 </head>
+
 <body>
-    <!-- Header -->
-    <header>
-        <nav class="container">
-            <div class="logo">
-                <i class="fas fa-shield-alt"></i> Nexus Control
-            </div>
-            <div class="nav-links">
-                <a href="#features">Features</a>
-                <a href="#pricing">Pricing</a>
-                <a href="#buy">Buy Now</a>
-            </div>
-        </nav>
-    </header>
 
-    <!-- Hero Section -->
-    <section class="hero">
-        <div class="container">
-            <h1>Nexus Control</h1>
-            <p>Professional VPN Control Panel for Windows. Take complete control of your VPN connections with an intuitive interface, real-time monitoring, and advanced security features.</p>
-            <a href="#buy" class="cta-button">
-                <i class="fas fa-download"></i> Get Started Now
-            </a>
-        </div>
-    </section>
+<div class="hero">
+    <h1>Nexus Control VPN</h1>
+    <p>Secure your privacy with one click VPN solution</p>
+</div>
 
-    <!-- Stats Section -->
-    <section class="stats">
-        <div class="container">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <h3>1000+</h3>
-                    <p>Active Users</p>
-                </div>
-                <div class="stat-item">
-                    <h3>50+</h3>
-                    <p>Server Locations</p>
-                </div>
-                <div class="stat-item">
-                    <h3>99.9%</h3>
-                    <p>Uptime</p>
-                </div>
-                <div class="stat-item">
-                    <h3>4.9★</h3>
-                    <p>User Rating</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="pricing">
 
-    <!-- Screenshot Section -->
-    <section class="screenshot-section">
-        <div class="container">
-            <h2>See Nexus Control in Action</h2>
-            <div class="screenshot-placeholder">
-                <i class="fas fa-desktop"></i>
-                <h3>Application Interface</h3>
-                <p>Clean, intuitive dashboard for managing your VPN connections</p>
-            </div>
-        </div>
-    </section>
+    <div class="card">
+        <h2>Lite</h2>
+        <p>Free / 7 days trial</p>
+        <ul>
+            <li>Basic VPN connections</li>
+            <li>3 servers</li>
+            <li>Standard speed</li>
+        </ul>
+        <button>Start Free Trial</button>
+    </div>
 
-    <!-- Features Section -->
-    <section class="features" id="features">
-        <div class="container">
-            <h2>Why Choose Nexus Control?</h2>
-            <div class="features-grid">
-                <div class="feature-card">
-                    <i class="fas fa-globe"></i>
-                    <h3>Global Server Network</h3>
-                    <p>Connect to servers worldwide with optimized routes for speed and reliability.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-tachometer-alt"></i>
-                    <h3>Real-Time Monitoring</h3>
-                    <p>Track your connection speed, data usage, and server performance in real-time.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-lock"></i>
-                    <h3>Advanced Security</h3>
-                    <p>Kill switch, DNS leak protection, and military-grade encryption for your safety.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-bolt"></i>
-                    <h3>Lightning Fast</h3>
-                    <p>Optimized servers deliver maximum speed for streaming, gaming, and browsing.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-user-shield"></i>
-                    <h3>Privacy First</h3>
-                    <p>Zero logs policy. Your data stays private - we don't track or store your activity.</p>
-                </div>
-                <div class="feature-card">
-                    <i class="fas fa-headset"></i>
-                    <h3>24/7 Support</h3>
-                    <p>Our expert team is always ready to help you with any questions or issues.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="card">
+        <h2>Premium</h2>
+        <p class="price">$5 / month</p>
+        <ul>
+            <li>Unlimited connections</li>
+            <li>50+ servers</li>
+            <li>High speed</li>
+        </ul>
+        <button>Buy Monthly</button>
+    </div>
 
-    <!-- Testimonials Section -->
-    <section class="testimonials">
-        <div class="container">
-            <h2>What Our Users Say</h2>
-            <div class="testimonial-grid">
-                <div class="testimonial-card">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p>"Best VPN control tool I've ever used. The interface is clean and the connection is always stable."</p>
-                    <div class="author">- Ahmed K.</div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                    </div>
-                    <p>"Switched from my old VPN client and never looked back. Worth every penny for the Premium version!"</p>
-                    <div class="author">- Sarah M.</div>
-                </div>
-                <div class="testimonial-card">
-                    <div class="stars">
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star"></i>
-                        <i class="fas fa-star-half-alt"></i>
-                    </div>
-                    <p>"Great for gaming! The kill switch feature saved me multiple times during competitive matches."</p>
-                    <div class="author">- Omar R.</div>
-                </div>
-            </div>
-        </div>
-    </section>
+    <div class="card">
+        <h2>Yearly</h2>
+        <p class="price">$50 / year</p>
+        <ul>
+            <li>All Premium features</li>
+            <li>24/7 support</li>
+            <li>Save $10</li>
+        </ul>
+        <button>Buy Yearly</button>
+    </div>
 
-    <!-- Pricing Section -->
-    <section class="pricing" id="pricing">
-        <div class="container">
-            <h2>Choose Your Plan</h2>
-            <div class="pricing-grid">
-                <!-- Lite Plan -->
-                <div class="pricing-card">
-                    <h3>Lite</h3>
-                    <div class="price">Free <span>/ 7 days trial</span></div>
-                    <ul>
-                        <li><i class="fas fa-check"></i> Basic VPN connections</li>
-                        <li><i class="fas fa-check"></i> 3 server locations</li>
-                        <li><i class="fas fa-check"></i> Standard speed</li>
-                        <li><i class="fas fa-check"></i> Community support</li>
-                        <li><i class="fas fa-times" style="color: #e74c3c;"></i> Kill switch</li>
-                        <li><i class="fas fa-times" style="color: #e74c3c;"></i> DNS leak protection</li>
-                    </ul>
-                    <a href="#" class="buy-button" onclick="alert('Download the app to start your free trial!'); return false;">
-                        Start Free Trial
-                    </a>
-                </div>
+</div>
 
-                <!-- Premium Monthly -->
-                <div class="pricing-card featured">
-                    <div class="badge">POPULAR</div>
-                    <h3>Premium</h3>
-                    <div class="price">$5 <span>/ month</span></div>
-                    <ul>
-                        <li><i class="fas fa-check"></i> Unlimited VPN connections</li>
-                        <li><i class="fas fa-check"></i> 50+ server locations</li>
-                        <li><i class="fas fa-check"></i> High-speed servers</li>
-                        <li><i class="fas fa-check"></i> Priority support</li>
-                        <li><i class="fas fa-check"></i> Kill switch included</li>
-                        <li><i class="fas fa-check"></i> DNS leak protection</li>
-                    </ul>
-                    <a href="#buy" class="buy-button featured-btn">
-                        <i class="fas fa-shopping-cart"></i> Buy Monthly
-                    </a>
-                </div>
+<div class="features">
 
-                <!-- Premium Yearly -->
-                <div class="pricing-card">
-                    <h3>Premium Yearly</h3>
-                    <div class="price">$50 <span>/ year</span></div>
-                    <ul>
-                        <li><i class="fas fa-check"></i> All Premium features</li>
-                        <li><i class="fas fa-check"></i> 50+ server locations</li>
-                        <li><i class="fas fa-check"></i> High-speed servers</li>
-                        <li><i class="fas fa-check"></i> 24/7 Priority support</li>
-                        <li><i class="fas fa-check"></i> Kill switch included</li>
-                        <li><i class="fas fa-check"></i> Save $10/year</li>
-                    </ul>
-                    <a href="#buy" class="buy-button">
-                        <i class="fas fa-shopping-cart"></i> Buy Yearly
-                    </a>
-            </div>
-        </section>
+<h2>Why Choose Nexus Control?</h2>
 
-        <!-- Features Section -->
-        <section class="features" id="features">
-            <div class="container">
-                <h2>Why Choose Nexus Control?</h2>
-                <div class="features-grid">
-                    <div class="feature-card">
-                        <i class="fas fa-globe"></i>
-                        <h3>Global Server Network</h3>
-                        <p>Connect to servers worldwide with optimized routes for speed and reliability.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-tachometer-alt"></i>
-                        <h3>Real-Time Monitoring</h3>
-                        <p>Track your connection speed, data usage, and server performance in real-time.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-lock"></i>
-                        <h3>Advanced Security</h3>
-                        <p>Kill switch, DNS leak protection, and military-grade encryption for your safety.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-bolt"></i>
-                        <h3>Lightning Fast</h3>
-                        <p>Optimized servers deliver maximum speed for streaming, gaming, and browsing.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-user-shield"></i>
-                        <h3>Privacy First</h3>
-                        <p>Zero logs policy. Your data stays private - we don't track or store your activity.</p>
-                    </div>
-                    <div class="feature-card">
-                        <i class="fas fa-headset"></i>
-                        <h3>24/7 Support</h3>
-                        <p>Our expert team is always ready to help you with any questions or issues.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-                    <i class="fas fa-chevron-down"></i>
-                </div>
-                <div class="faq-answer">
-                    We accept all major credit cards, PayPal, and various local payment methods through our secure payment processor.
-                </div>
-            </div>
-        </div>
-    </section>
+<div class="grid">
 
-    <!-- Buy Now Section -->
-    <section id="buy">
-        <div class="container">
-            <h2>Ready to Upgrade?</h2>
-            <p>Join 1000+ satisfied users. Get instant access to all premium features.</p>
-            <a href="https://checkout.paddle.com/your-product-link" class="cta-button" style="background: #27ae60;">
-                <i class="fas fa-credit-card"></i> Buy Now - $5/month
-            </a>
-            <div style="margin-top: 30px; display: flex; justify-content: center; gap: 30px; flex-wrap: wrap;">
-                <p style="font-size: 14px;">
-                    <i class="fas fa-shield-alt" style="color: #27ae60;"></i> Secure payment
-                </p>
-                <p style="font-size: 14px;">
-                    <i class="fas fa-bolt" style="color: #f39c12;"></i> Instant activation
-                </p>
-                <p style="font-size: 14px;">
-                    <i class="fas fa-undo" style="color: #e74c3c;"></i> 30-day money-back
-                </p>
-            </div>
-        </div>
-    </section>
+<div class="box">🌍 Global Server Network</div>
+<div class="box">📊 Real-Time Monitoring</div>
+<div class="box">🛡 Advanced Security</div>
+<div class="box">⚡ Lightning Fast</div>
+<div class="box">🔒 Privacy First</div>
+<div class="box">💬 24/7 Support</div>
 
-    <!-- Footer -->
-    <footer>
-        <div class="container">
-            <div class="footer-links">
-                <a href="terms.html">Terms of Service</a>
-                <a href="privacy.html">Privacy Policy</a>
-                <a href="refund.html">Refund Policy</a>
-                <a href="mailto:support@nexuscontrol.com">Contact Support</a>
-            </div>
-            <p>&copy; 2024 Nexus Control. All rights reserved. | Professional VPN Control Panel</p>
-        </div>
-    </footer>
+</div>
 
-    <!-- FAQ Interaction Script -->
-    <script>
-        document.querySelectorAll('.faq-question').forEach(question => {
-            question.addEventListener('click', () => {
-                const faqItem = question.parentElement;
-                faqItem.classList.toggle('active');
-                
-                const icon = question.querySelector('i');
-                icon.classList.toggle('fa-chevron-down');
-                icon.classList.toggle('fa-chevron-up');
-            });
-        });
-    </script>
+</div>
+
 </body>
 </html>
