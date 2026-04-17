@@ -19,15 +19,16 @@ body {
 }
 
 .hero h1 {
-    font-size: 42px;
+    font-size: 44px;
     margin-bottom: 10px;
 }
 
 .hero p {
     color: #94a3b8;
+    font-size: 16px;
 }
 
-/* PRICING WRAPPER */
+/* PRICING SECTION */
 .pricing {
     display: flex;
     justify-content: center;
@@ -39,34 +40,47 @@ body {
 /* CARD */
 .card {
     background: #111827;
-    width: 280px;
+    width: 290px;
     padding: 25px;
     border-radius: 15px;
-    transition: 0.3s ease;
     border: 1px solid #1f2937;
+    transition: 0.3s ease;
 }
 
-/* 🔥 FLOAT ANIMATION ON HOVER */
+/* FLOAT EFFECT */
 .card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+    transform: translateY(-12px);
+    box-shadow: 0 18px 45px rgba(0,0,0,0.6);
 }
 
-/* PRICING TITLE */
-.card h2 {
-    margin: 0;
+/* PREMIUM HIGHLIGHT */
+.card.premium {
+    border: 1px solid #38bdf8;
 }
 
+/* BADGE */
+.badge {
+    display: inline-block;
+    background: gold;
+    color: black;
+    font-size: 12px;
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+
+/* PRICE */
 .price {
     font-size: 22px;
     color: #38bdf8;
     margin: 10px 0;
 }
 
-/* FEATURES */
+/* LIST */
 ul {
     list-style: none;
     padding: 0;
+    margin-top: 10px;
 }
 
 li {
@@ -74,7 +88,7 @@ li {
     font-size: 14px;
 }
 
-/* CHECK / CROSS */
+/* CHECK & CROSS */
 .ok::before {
     content: "✔ ";
     color: #22c55e;
@@ -85,19 +99,19 @@ li {
     color: #ef4444;
 }
 
-/* BUTTON */
+/* BUTTONS */
 button {
     width: 100%;
     padding: 12px;
     margin-top: 15px;
     border: none;
     border-radius: 10px;
-    cursor: pointer;
     font-weight: bold;
+    cursor: pointer;
     transition: 0.2s;
 }
 
-/* Lite */
+/* LITE */
 .lite-btn {
     background: #334155;
     color: white;
@@ -107,7 +121,7 @@ button {
     background: #475569;
 }
 
-/* Premium */
+/* PREMIUM */
 .premium-btn {
     background: #38bdf8;
     color: black;
@@ -117,26 +131,26 @@ button {
     background: #0ea5e9;
 }
 
-/* BADGE */
-.badge {
-    background: gold;
-    color: black;
-    padding: 5px 10px;
+/* PAYMENT BADGE */
+.pay-info {
     font-size: 12px;
-    border-radius: 20px;
-    display: inline-block;
-    margin-bottom: 10px;
+    color: #94a3b8;
+    margin-top: 8px;
 }
 
-/* FEATURES SECTION */
+/* FEATURES */
 .features {
     text-align: center;
-    padding: 40px;
+    padding: 50px 20px;
+}
+
+.features h2 {
+    margin-bottom: 20px;
 }
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 15px;
     padding: 20px;
 }
@@ -145,6 +159,15 @@ button {
     background: #111827;
     padding: 15px;
     border-radius: 10px;
+    border: 1px solid #1f2937;
+}
+
+/* FOOTER */
+footer {
+    text-align: center;
+    padding: 30px;
+    font-size: 12px;
+    color: #64748b;
 }
 </style>
 
@@ -152,11 +175,13 @@ button {
 
 <body>
 
+<!-- HERO -->
 <div class="hero">
     <h1>Nexus Vision VPN</h1>
-    <p>Secure. Fast. One Click Protection.</p>
+    <p>Secure. Fast. One Click Protection for your privacy.</p>
 </div>
 
+<!-- PRICING -->
 <div class="pricing">
 
     <!-- LITE -->
@@ -177,7 +202,7 @@ button {
     </div>
 
     <!-- PREMIUM -->
-    <div class="card">
+    <div class="card premium">
         <span class="badge">RECOMMENDED</span>
         <h2>Premium</h2>
         <p class="price">$10 / year</p>
@@ -193,24 +218,32 @@ button {
 
         <button class="premium-btn"
         onclick="window.location.href='https://mohamedhassan67.gumroad.com/l/xxxxx'">
-        Buy Premium
+        💳 Secure Checkout - Buy Premium
         </button>
+
+        <div class="pay-info">🔒 Secure payment via Gumroad</div>
     </div>
 
 </div>
 
+<!-- FEATURES -->
 <div class="features">
     <h2>Why Choose Nexus Vision?</h2>
 
     <div class="grid">
-        <div class="box">🌍 Global Servers</div>
-        <div class="box">⚡ High Speed Network</div>
-        <div class="box">🛡 Advanced Security</div>
+        <div class="box">🌍 Global Server Network</div>
+        <div class="box">⚡ Lightning Fast Speed</div>
+        <div class="box">🛡 Advanced Security Layer</div>
         <div class="box">🔒 No Logs Policy</div>
-        <div class="box">📊 Real-time Monitoring</div>
+        <div class="box">📊 Real-Time Monitoring</div>
         <div class="box">💬 24/7 Support</div>
     </div>
 </div>
+
+<!-- FOOTER -->
+<footer>
+    NexusVisionX • Privacy First VPN Solution
+</footer>
 
 </body>
 </html>
