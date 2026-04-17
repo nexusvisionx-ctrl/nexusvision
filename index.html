@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Nexus Control VPN</title>
-<style>
+<title>Nexus Vision VPN</title>
 
+<style>
 body {
     margin: 0;
-    font-family: Arial;
-    background: #0f172a;
+    font-family: Arial, sans-serif;
+    background: #0b1220;
     color: white;
 }
 
@@ -19,29 +19,40 @@ body {
 }
 
 .hero h1 {
-    font-size: 40px;
+    font-size: 42px;
+    margin-bottom: 10px;
 }
 
 .hero p {
     color: #94a3b8;
 }
 
-/* PRICING */
+/* PRICING WRAPPER */
 .pricing {
     display: flex;
     justify-content: center;
-    gap: 20px;
+    gap: 25px;
     flex-wrap: wrap;
     padding: 40px;
 }
 
+/* CARD */
 .card {
-    background: #1e293b;
-    padding: 20px;
-    width: 260px;
-    border-radius: 12px;
+    background: #111827;
+    width: 280px;
+    padding: 25px;
+    border-radius: 15px;
+    transition: 0.3s ease;
+    border: 1px solid #1f2937;
 }
 
+/* 🔥 FLOAT ANIMATION ON HOVER */
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.5);
+}
+
+/* PRICING TITLE */
 .card h2 {
     margin: 0;
 }
@@ -52,99 +63,153 @@ body {
     margin: 10px 0;
 }
 
-button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    background: #38bdf8;
-    border: none;
-    color: black;
-    font-weight: bold;
-    cursor: pointer;
-    border-radius: 8px;
+/* FEATURES */
+ul {
+    list-style: none;
+    padding: 0;
 }
 
-/* FEATURES */
+li {
+    margin: 8px 0;
+    font-size: 14px;
+}
+
+/* CHECK / CROSS */
+.ok::before {
+    content: "✔ ";
+    color: #22c55e;
+}
+
+.no::before {
+    content: "✖ ";
+    color: #ef4444;
+}
+
+/* BUTTON */
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+/* Lite */
+.lite-btn {
+    background: #334155;
+    color: white;
+}
+
+.lite-btn:hover {
+    background: #475569;
+}
+
+/* Premium */
+.premium-btn {
+    background: #38bdf8;
+    color: black;
+}
+
+.premium-btn:hover {
+    background: #0ea5e9;
+}
+
+/* BADGE */
+.badge {
+    background: gold;
+    color: black;
+    padding: 5px 10px;
+    font-size: 12px;
+    border-radius: 20px;
+    display: inline-block;
+    margin-bottom: 10px;
+}
+
+/* FEATURES SECTION */
 .features {
-    padding: 40px;
     text-align: center;
+    padding: 40px;
 }
 
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
     gap: 15px;
     padding: 20px;
 }
 
 .box {
-    background: #1e293b;
+    background: #111827;
     padding: 15px;
     border-radius: 10px;
 }
-
 </style>
+
 </head>
 
 <body>
 
 <div class="hero">
-    <h1>Nexus Control VPN</h1>
-    <p>Secure your privacy with one click VPN solution</p>
+    <h1>Nexus Vision VPN</h1>
+    <p>Secure. Fast. One Click Protection.</p>
 </div>
 
 <div class="pricing">
 
+    <!-- LITE -->
     <div class="card">
         <h2>Lite</h2>
-        <p>Free / 7 days trial</p>
+        <p>Free / 7 Days Trial</p>
+
         <ul>
-            <li>Basic VPN connections</li>
-            <li>3 servers</li>
-            <li>Standard speed</li>
+            <li class="ok">Basic VPN connections</li>
+            <li class="ok">3 server locations</li>
+            <li class="ok">Standard speed</li>
+            <li class="ok">Community support</li>
+            <li class="ok">Kill switch</li>
+            <li class="ok">DNS leak protection</li>
         </ul>
-        <button>Start Free Trial</button>
+
+        <button class="lite-btn">Start Free Trial</button>
     </div>
 
+    <!-- PREMIUM -->
     <div class="card">
+        <span class="badge">RECOMMENDED</span>
         <h2>Premium</h2>
-        <p class="price">$5 / month</p>
-        <ul>
-            <li>Unlimited connections</li>
-            <li>50+ servers</li>
-            <li>High speed</li>
-        </ul>
-        <button>Buy Monthly</button>
-    </div>
+        <p class="price">$10 / year</p>
 
-    <div class="card">
-        <h2>Yearly</h2>
-        <p class="price">$50 / year</p>
         <ul>
-            <li>All Premium features</li>
-            <li>24/7 support</li>
-            <li>Save $10</li>
+            <li class="ok">All Premium features</li>
+            <li class="ok">50+ server locations</li>
+            <li class="ok">High-speed servers</li>
+            <li class="ok">24/7 Priority support</li>
+            <li class="ok">Kill switch included</li>
+            <li class="ok">DNS leak protection</li>
         </ul>
-        <button>Buy Yearly</button>
+
+        <button class="premium-btn"
+        onclick="window.location.href='https://mohamedhassan67.gumroad.com/l/xxxxx'">
+        Buy Premium
+        </button>
     </div>
 
 </div>
 
 <div class="features">
+    <h2>Why Choose Nexus Vision?</h2>
 
-<h2>Why Choose Nexus Control?</h2>
-
-<div class="grid">
-
-<div class="box">🌍 Global Server Network</div>
-<div class="box">📊 Real-Time Monitoring</div>
-<div class="box">🛡 Advanced Security</div>
-<div class="box">⚡ Lightning Fast</div>
-<div class="box">🔒 Privacy First</div>
-<div class="box">💬 24/7 Support</div>
-
-</div>
-
+    <div class="grid">
+        <div class="box">🌍 Global Servers</div>
+        <div class="box">⚡ High Speed Network</div>
+        <div class="box">🛡 Advanced Security</div>
+        <div class="box">🔒 No Logs Policy</div>
+        <div class="box">📊 Real-time Monitoring</div>
+        <div class="box">💬 24/7 Support</div>
+    </div>
 </div>
 
 </body>
