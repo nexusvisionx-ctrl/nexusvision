@@ -2,248 +2,156 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Nexus Vision VPN</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexus Tools VPN</title>
 
 <style>
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    background: #0b1220;
+    background: #0f172a;
     color: white;
-}
-
-/* HERO */
-.hero {
     text-align: center;
-    padding: 60px 20px;
 }
 
-.hero h1 {
-    font-size: 44px;
-    margin-bottom: 10px;
+h1 {
+    margin-top: 40px;
+    font-size: 40px;
 }
 
-.hero p {
-    color: #94a3b8;
-    font-size: 16px;
+p {
+    color: #cbd5f5;
 }
 
-/* PRICING SECTION */
-.pricing {
+.container {
     display: flex;
     justify-content: center;
-    gap: 25px;
+    gap: 30px;
+    margin-top: 50px;
     flex-wrap: wrap;
-    padding: 40px;
 }
 
-/* CARD */
 .card {
-    background: #111827;
-    width: 290px;
-    padding: 25px;
+    background: #1e293b;
+    padding: 30px;
     border-radius: 15px;
-    border: 1px solid #1f2937;
-    transition: 0.3s ease;
+    width: 300px;
+    transition: 0.3s;
 }
 
-/* FLOAT EFFECT */
 .card:hover {
-    transform: translateY(-12px);
-    box-shadow: 0 18px 45px rgba(0,0,0,0.6);
+    transform: translateY(-10px);
 }
 
-/* PREMIUM HIGHLIGHT */
-.card.premium {
-    border: 1px solid #38bdf8;
-}
-
-/* BADGE */
-.badge {
-    display: inline-block;
-    background: gold;
-    color: black;
-    font-size: 12px;
-    padding: 5px 10px;
-    border-radius: 20px;
-    margin-bottom: 10px;
-}
-
-/* PRICE */
 .price {
-    font-size: 22px;
-    color: #38bdf8;
-    margin: 10px 0;
+    font-size: 28px;
+    margin: 15px 0;
 }
 
-/* LIST */
 ul {
     list-style: none;
     padding: 0;
-    margin-top: 10px;
+    text-align: left;
 }
 
 li {
-    margin: 8px 0;
-    font-size: 14px;
+    margin: 10px 0;
 }
 
-/* CHECK & CROSS */
-.ok::before {
-    content: "✔ ";
+.check {
     color: #22c55e;
 }
 
-.no::before {
-    content: "✖ ";
+.cross {
     color: #ef4444;
 }
 
-/* BUTTONS */
 button {
-    width: 100%;
-    padding: 12px;
-    margin-top: 15px;
+    margin-top: 20px;
+    padding: 12px 20px;
     border: none;
-    border-radius: 10px;
-    font-weight: bold;
+    border-radius: 8px;
     cursor: pointer;
-    transition: 0.2s;
+    font-weight: bold;
 }
 
-/* LITE */
-.lite-btn {
-    background: #334155;
+.download {
+    background: #3b82f6;
     color: white;
 }
 
-.lite-btn:hover {
-    background: #475569;
-}
-
-/* PREMIUM */
-.premium-btn {
-    background: #38bdf8;
+.buy {
+    background: #22c55e;
     color: black;
 }
 
-.premium-btn:hover {
-    background: #0ea5e9;
-}
-
-/* PAYMENT BADGE */
-.pay-info {
-    font-size: 12px;
+.footer {
+    margin-top: 60px;
     color: #94a3b8;
-    margin-top: 8px;
-}
-
-/* FEATURES */
-.features {
-    text-align: center;
-    padding: 50px 20px;
-}
-
-.features h2 {
-    margin-bottom: 20px;
-}
-
-.grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 15px;
-    padding: 20px;
-}
-
-.box {
-    background: #111827;
-    padding: 15px;
-    border-radius: 10px;
-    border: 1px solid #1f2937;
-}
-
-/* FOOTER */
-footer {
-    text-align: center;
-    padding: 30px;
-    font-size: 12px;
-    color: #64748b;
+    font-size: 14px;
 }
 </style>
-
 </head>
 
 <body>
 
-<!-- HERO -->
-<div class="hero">
-    <h1>Nexus Vision VPN</h1>
-    <p>Secure. Fast. One Click Protection for your privacy.</p>
-</div>
+<h1>Nexus Tools VPN</h1>
+<p>Secure your privacy with one click</p>
 
-<!-- PRICING -->
-<div class="pricing">
+<div class="container">
 
-    <!-- LITE -->
+    <!-- FREE PLAN -->
     <div class="card">
-        <h2>Lite</h2>
-        <p>Free / 7 Days Trial</p>
+        <h2>Free</h2>
+        <div class="price">$0</div>
 
         <ul>
-            <li class="ok">Basic VPN connections</li>
-            <li class="ok">3 server locations</li>
-            <li class="ok">Standard speed</li>
-            <li class="ok">Community support</li>
-            <li class="ok">Kill switch</li>
-            <li class="ok">DNS leak protection</li>
+            <li class="check">✔ Basic VPN connection</li>
+            <li class="check">✔ 3 server locations</li>
+            <li class="check">✔ Standard speed</li>
+            <li class="check">✔ Kill switch</li>
+            <li class="check">✔ DNS protection</li>
+            <li class="cross">✖ High-speed servers</li>
+            <li class="cross">✖ 50+ locations</li>
+            <li class="cross">✖ Priority support</li>
         </ul>
 
-        <button class="lite-btn">Start Free Trial</button>
+        <button class="download"
+        onclick="window.open('https://nexusvisionxgmailcom.itch.io/nexus-tools-vpn', '_blank')">
+        Download Free
+        </button>
     </div>
 
-    <!-- PREMIUM -->
-    <div class="card premium">
-        <span class="badge">RECOMMENDED</span>
+    <!-- PREMIUM PLAN -->
+    <div class="card">
         <h2>Premium</h2>
-        <p class="price">$10 / year</p>
+        <div class="price">$10 (One-time)</div>
 
         <ul>
-            <li class="ok">All Premium features</li>
-            <li class="ok">50+ server locations</li>
-            <li class="ok">High-speed servers</li>
-            <li class="ok">24/7 Priority support</li>
-            <li class="ok">Kill switch included</li>
-            <li class="ok">DNS leak protection</li>
+            <li class="check">✔ All VPN features</li>
+            <li class="check">✔ 50+ server locations</li>
+            <li class="check">✔ High-speed servers</li>
+            <li class="check">✔ Priority support</li>
+            <li class="check">✔ Kill switch</li>
+            <li class="check">✔ DNS protection</li>
         </ul>
 
-        <button class="premium-btn"
-        onclick="window.location.href='https://mohamedhassan67.gumroad.com/l/xxxxx'">
-        💳 Secure Checkout - Buy Premium
+        <button class="download"
+        onclick="window.open('https://nexusvisionxgmailcom.itch.io/nexus-tools-vpn', '_blank')">
+        Download App
         </button>
 
-        <div class="pay-info">🔒 Secure payment via Gumroad</div>
+        <button class="buy"
+        onclick="window.open('https://nexusvisionx.gumroad.com/l/nexus-control', '_blank')">
+        Buy Premium
+        </button>
     </div>
 
 </div>
 
-<!-- FEATURES -->
-<div class="features">
-    <h2>Why Choose Nexus Vision?</h2>
-
-    <div class="grid">
-        <div class="box">🌍 Global Server Network</div>
-        <div class="box">⚡ Lightning Fast Speed</div>
-        <div class="box">🛡 Advanced Security Layer</div>
-        <div class="box">🔒 No Logs Policy</div>
-        <div class="box">📊 Real-Time Monitoring</div>
-        <div class="box">💬 24/7 Support</div>
-    </div>
+<div class="footer">
+    <p>Download the app and upgrade inside for full experience</p>
 </div>
-
-<!-- FOOTER -->
-<footer>
-    NexusVisionX • Privacy First VPN Solution
-</footer>
 
 </body>
 </html>
