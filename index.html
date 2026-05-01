@@ -1,190 +1,1089 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Nexus Tools VPN</title>
-
-<style>
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #0f172a;
-    color: white;
-    text-align: center;
-}
-
-header {
-    padding: 40px 20px;
-}
-
-h1 {
-    font-size: 42px;
-    margin-bottom: 10px;
-}
-
-.sub {
-    color: #94a3b8;
-}
-
-.badges {
-    margin-top: 10px;
-    color: #22c55e;
-    font-weight: bold;
-}
-
-.container {
-    display: flex;
-    justify-content: center;
-    gap: 30px;
-    flex-wrap: wrap;
-    margin: 50px 20px;
-}
-
-.card {
-    background: #1e293b;
-    padding: 30px;
-    border-radius: 16px;
-    width: 320px;
-    transition: 0.3s;
-}
-
-.card:hover {
-    transform: translateY(-10px);
-}
-
-.price {
-    font-size: 28px;
-    margin: 10px 0;
-}
-
-ul {
-    list-style: none;
-    padding: 0;
-    text-align: left;
-}
-
-li {
-    margin: 8px 0;
-}
-
-.check { color: #22c55e; }
-.cross { color: #ef4444; }
-
-button {
-    margin-top: 15px;
-    padding: 12px 18px;
-    border: none;
-    border-radius: 8px;
-    cursor: pointer;
-    font-weight: bold;
-    width: 100%;
-}
-
-.download {
-    background: #3b82f6;
-    color: white;
-}
-
-.buy {
-    background: #22c55e;
-    color: black;
-}
-
-.section {
-    margin-top: 40px;
-    padding: 20px;
-}
-
-.footer {
-    margin-top: 60px;
-    color: #64748b;
-    font-size: 13px;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Tools VPN Setup v1.0.1 - Secure & Private VPN Connection</title>
+    <meta name="description" content="Simple and fast VPN application for Windows. One-click connection, no complex settings. Protect your digital identity and secure your internet connection.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --secondary: #06b6d4;
+            --accent: #3b82f6;
+            --bg-dark: #0f172a;
+            --bg-card: #1e293b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --success: #22c55e;
+            --gradient-1: linear-gradient(135deg, #10b981 0%, #06b6d4 50%, #3b82f6 100%);
+            --gradient-2: linear-gradient(135deg, #059669 0%, #10b981 100%);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', 'Cairo', -apple-system, sans-serif;
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        /* Animated Background */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(16, 185, 129, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(6, 182, 212, 0.15) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+        }
+        
+        /* Language Switcher */
+        .lang-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: var(--bg-card);
+            border-radius: 50px;
+            padding: 5px;
+            display: flex;
+            gap: 5px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .lang-btn {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background: transparent;
+            color: var(--text-secondary);
+        }
+        
+        .lang-btn.active {
+            background: var(--gradient-1);
+            color: white;
+        }
+        
+        .lang-btn:hover:not(.active) {
+            color: var(--text-primary);
+            background: rgba(255,255,255,0.1);
+        }
+        
+        /* Header */
+        header {
+            text-align: center;
+            padding: 100px 20px 60px;
+        }
+        
+        .logo-container {
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient-1);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            box-shadow: 0 10px 40px rgba(16, 185, 129, 0.4);
+        }
+        
+        .logo-text {
+            text-align: left;
+        }
+        
+        .logo-text h1 {
+            font-size: 32px;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .logo-text span {
+            font-size: 14px;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        .tagline {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+        
+        .tagline .highlight {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            font-size: 20px;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+        
+        /* Badges */
+        .badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 50px;
+        }
+        
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 50px;
+            color: var(--success);
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        /* Main Content Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Screenshot Section */
+        .screenshot-section {
+            margin: 60px 0;
+            text-align: center;
+        }
+        
+        .screenshot-container {
+            position: relative;
+            display: inline-block;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 25px 80px rgba(16, 185, 129, 0.3);
+        }
+        
+        .screenshot-container img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 20px;
+        }
+        
+        .screenshot-glow {
+            position: absolute;
+            inset: -2px;
+            background: var(--gradient-1);
+            border-radius: 22px;
+            z-index: -1;
+            opacity: 0.5;
+            filter: blur(20px);
+        }
+        
+        /* Features Grid */
+        .features-section {
+            margin: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 700;
+            margin-bottom: 50px;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        
+        .feature-card {
+            background: var(--bg-card);
+            padding: 30px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-1);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+        
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            border-color: rgba(16, 185, 129, 0.3);
+        }
+        
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-2);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .feature-card p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        /* Comparison Table */
+        .comparison-section {
+            margin: 80px 0;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        .comparison-card {
+            background: var(--bg-card);
+            padding: 35px;
+            border-radius: 20px;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .comparison-card.premium {
+            border: 2px solid var(--primary);
+            position: relative;
+        }
+        
+        .comparison-card.premium::before {
+            content: 'RECOMMENDED';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--gradient-1);
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+        
+        .comparison-card h3 {
+            font-size: 22px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .comparison-card ul {
+            list-style: none;
+        }
+        
+        .comparison-card li {
+            padding: 10px 0;
+            color: var(--text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .comparison-card.premium li {
+            color: var(--text-primary);
+        }
+        
+        /* Pricing Card */
+        .pricing-section {
+            margin: 80px 0;
+            text-align: center;
+        }
+        
+        .pricing-card {
+            max-width: 500px;
+            margin: 0 auto;
+            background: var(--bg-card);
+            padding: 50px 40px;
+            border-radius: 30px;
+            border: 2px solid transparent;
+            background-clip: padding-box;
+            position: relative;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.4);
+        }
+        
+        .pricing-card::before {
+            content: '';
+            position: absolute;
+            inset: -2px;
+            background: var(--gradient-1);
+            border-radius: 32px;
+            z-index: -1;
+        }
+        
+        .pricing-badge {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--gradient-1);
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+        
+        .pricing-card h3 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .price {
+            font-size: 56px;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin: 20px 0;
+        }
+        
+        .price-note {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+        
+        .features-list {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 35px;
+        }
+        
+        .features-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .check-icon {
+            color: var(--success);
+            font-weight: bold;
+        }
+        
+        /* CTA Buttons */
+        .cta-button {
+            display: inline-block;
+            width: 100%;
+            padding: 18px 30px;
+            font-size: 18px;
+            font-weight: 700;
+            border: none;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            margin-bottom: 15px;
+        }
+        
+        .cta-primary {
+            background: var(--gradient-1);
+            color: white;
+            box-shadow: 0 10px 40px rgba(16, 185, 129, 0.4);
+        }
+        
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 50px rgba(16, 185, 129, 0.5);
+        }
+        
+        .cta-secondary {
+            background: transparent;
+            color: var(--text-primary);
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+        
+        .cta-secondary:hover {
+            background: rgba(255,255,255,0.05);
+            border-color: rgba(255,255,255,0.4);
+        }
+        
+        /* Target Audience */
+        .audience-section {
+            margin: 80px 0;
+        }
+        
+        .audience-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 40px;
+        }
+        
+        .audience-card {
+            background: rgba(255,255,255,0.03);
+            padding: 30px 25px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .audience-card .icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+        
+        .audience-card h4 {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        /* Stats Section */
+        .stats-section {
+            background: var(--bg-card);
+            padding: 60px 40px;
+            border-radius: 30px;
+            margin: 80px 0;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.05);
+        }
+        
+        .sponsor {
+            margin-bottom: 40px;
+        }
+        
+        .sponsor-label {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
+        .sponsor-name {
+            font-size: 32px;
+            font-weight: 800;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .stat-item h3 {
+            font-size: 42px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+        
+        .stat-item p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+            border-top: 1px solid rgba(255,255,255,0.05);
+            margin-top: 80px;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .motto {
+            font-style: italic;
+            font-size: 18px;
+            color: var(--text-primary);
+            margin: 30px 0;
+            padding: 20px;
+            border-left: 3px solid var(--primary);
+            border-right: 3px solid var(--primary);
+            background: rgba(16, 185, 129, 0.05);
+            border-radius: 10px;
+        }
+        
+        /* RTL Support */
+        html[dir="rtl"] .lang-switcher {
+            right: auto;
+            left: 20px;
+        }
+        
+        html[dir="rtl"] .logo-text {
+            text-align: right;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .tagline {
+                font-size: 28px;
+            }
+            
+            .subtitle {
+                font-size: 16px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .pricing-card {
+                padding: 35px 25px;
+            }
+            
+            .price {
+                font-size: 42px;
+            }
+            
+            .lang-switcher {
+                top: 10px;
+                right: 10px;
+            }
+            
+            .lang-btn {
+                padding: 6px 15px;
+                font-size: 12px;
+            }
+        }
+        
+        /* Hidden for language toggle */
+        .en-content, .ar-content {
+            display: none;
+        }
+        
+        .en-content.active, .ar-content.active {
+            display: block;
+        }
+    </style>
 </head>
-
 <body>
-
-<header>
-    <h1>Nexus Tools VPN</h1>
-    <p class="sub">Fast • Secure • Private VPN Solution</p>
-
-    <div class="badges">
-        ✔ 7-Day Free Trial • ✔ No Logs • ✔ One-Time Payment
-    </div>
-</header>
-
-<div class="container">
-
-    <!-- FREE -->
-    <div class="card">
-        <h2>Free Plan</h2>
-        <div class="price">$0</div>
-
-        <ul>
-            <li class="check">✔ Basic VPN connection</li>
-            <li class="check">✔ 3 server locations</li>
-            <li class="check">✔ Standard speed</li>
-            <li class="check">✔ Kill switch</li>
-            <li class="check">✔ DNS leak protection</li>
-
-            <li class="cross">✖ High-speed servers</li>
-            <li class="cross">✖ 50+ locations</li>
-            <li class="cross">✖ Priority support</li>
-        </ul>
-
-        <button class="download"
-        onclick="window.open('https://nexusvisionxgmailcom.itch.io/nexus-tools-vpn','_blank')">
-            Download Free
-        </button>
+    <div class="bg-animation"></div>
+    
+    <!-- Language Switcher -->
+    <div class="lang-switcher">
+        <button class="lang-btn active" onclick="setLanguage('en')" data-lang="en">EN</button>
+        <button class="lang-btn" onclick="setLanguage('ar')" data-lang="ar">AR</button>
     </div>
 
-    <!-- PREMIUM -->
-    <div class="card">
-        <h2>Premium Plan</h2>
-        <div class="price">$10 (One-Time)</div>
+    <!-- English Content -->
+    <div class="en-content active">
+        <header>
+            <div class="logo-container">
+                <div class="logo-icon">🛡️</div>
+                <div class="logo-text">
+                    <h1>Nexus Tools VPN Setup</h1>
+                    <span>v1.0.1 x64</span>
+                </div>
+            </div>
+            
+            <h2 class="tagline">Protection & Privacy <span class="highlight">Without Complexity</span></h2>
+            <p class="subtitle">A simple and fast VPN application designed to protect your digital identity and secure your internet connection with just one click. No complex settings, no long setup steps.</p>
+            
+            <div class="badges">
+                <div class="badge">✓ One-Click Connect</div>
+                <div class="badge">✓ No Logs Policy</div>
+                <div class="badge">✓ Lightweight & Fast</div>
+            </div>
+        </header>
 
-        <ul>
-            <li class="check">✔ All VPN features</li>
-            <li class="check">✔ 50+ server locations</li>
-            <li class="check">✔ High-speed servers</li>
-            <li class="check">✔ Priority support</li>
-            <li class="check">✔ Kill switch</li>
-            <li class="check">✔ DNS leak protection</li>
-        </ul>
+        <div class="container">
+            <!-- Screenshot -->
+            <section class="screenshot-section">
+                <div class="screenshot-container">
+                    <div class="screenshot-glow"></div>
+                    <img src="nexus-vpn-screenshot.png" alt="Nexus Tools VPN Setup Interface">
+                </div>
+            </section>
 
-        <button class="download"
-        onclick="window.open('https://nexusvisionxgmailcom.itch.io/nexus-tools-vpn','_blank')">
-            Download App
-        </button>
+            <!-- Core Purpose -->
+            <section class="features-section">
+                <h2 class="section-title">Why Nexus Tools VPN?</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🛡️</div>
+                        <h3>Privacy Protection</h3>
+                        <p>Hide your real IP address, prevent tracking of your online activity, and reduce data collection from websites. Your privacy is our priority.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔐</div>
+                        <h3>Secure Connection</h3>
+                        <p>Encrypt your connection between you and the internet. Protect your data when using public WiFi networks and reduce hacking or spying risks.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Simple Experience</h3>
+                        <p>Start with one click. No complex settings, no technical knowledge required. Clean and easy interface for everyone.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌍</div>
+                        <h3>Secure Content Access</h3>
+                        <p>Browse safely from anywhere, reduce geo-restrictions on some services, and enjoy a stable and fast connection.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">👻</div>
+                        <h3>No Tracking</h3>
+                        <p>We don't track you. We don't keep logs of your browsing activity. Your online activity remains completely private.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💻</div>
+                        <h3>Lightweight Design</h3>
+                        <p>Fast and light on your device. Minimal resource usage while maintaining maximum security and performance.</p>
+                    </div>
+                </div>
+            </section>
 
-        <button class="buy"
-        onclick="window.open('https://nexusvisionx.gumroad.com/l/nexus-control','_blank')">
-            Buy Premium
-        </button>
+            <!-- Comparison -->
+            <section class="comparison-section">
+                <h2 class="section-title">Choose Your Plan</h2>
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <h3>🟢 Free Version</h3>
+                        <ul>
+                            <li><span class="check-icon">✓</span> Basic VPN connection</li>
+                            <li><span class="check-icon">✓</span> Limited server locations</li>
+                            <li><span class="check-icon">✓</span> Standard speed</li>
+                            <li><span class="check-icon">✓</span> Basic protection</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card premium">
+                        <h3>🔵 Premium Version</h3>
+                        <ul>
+                            <li><span class="check-icon">✓</span> All global servers</li>
+                            <li><span class="check-icon">✓</span> High optimized speed</li>
+                            <li><span class="check-icon">✓</span> Performance priority</li>
+                            <li><span class="check-icon">✓</span> Advanced protection</li>
+                            <li><span class="check-icon">✓</span> More stable experience</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Target Audience -->
+            <section class="audience-section">
+                <h2 class="section-title">Perfect For</h2>
+                <div class="audience-grid">
+                    <div class="audience-card">
+                        <div class="icon">👨‍💻</div>
+                        <h4>Software Developers</h4>
+                    </div>
+                    <div class="audience-card">
+                        <div class="icon">📱</div>
+                        <h4>App Developers</h4>
+                    </div>
+                    <div class="audience-card">
+                        <div class="icon">🔒</div>
+                        <h4>Privacy Advocates</h4>
+                    </div>
+                    <div class="audience-card">
+                        <div class="icon">☕</div>
+                        <h4>Remote Workers</h4>
+                    </div>
+                    <div class="audience-card">
+                        <div class="icon">✈️</div>
+                        <h4>Frequent Travelers</h4>
+                    </div>
+                    <div class="audience-card">
+                        <div class="icon">🏠</div>
+                        <h4>Home Users</h4>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Pricing -->
+            <section class="pricing-section">
+                <div class="pricing-card">
+                    <div class="pricing-badge">Premium License</div>
+                    <h3>Nexus Tools VPN Setup Pro</h3>
+                    <div class="price">$4.99</div>
+                    <p class="price-note">One-time payment • No subscription • Lifetime access</p>
+                    
+                    <ul class="features-list">
+                        <li><span class="check-icon">✓</span> Access to all global servers</li>
+                        <li><span class="check-icon">✓</span> High-speed optimized connection</li>
+                        <li><span class="check-icon">✓</span> Performance priority routing</li>
+                        <li><span class="check-icon">✓</span> Advanced encryption protocols</li>
+                        <li><span class="check-icon">✓</span> No bandwidth limits</li>
+                        <li><span class="check-icon">✓</span> Priority customer support</li>
+                        <li><span class="check-icon">✓</span> Lifetime free updates</li>
+                        <li><span class="check-icon">✓</span> No logs, 100% private</li>
+                    </ul>
+                    
+                    <a href="https://nexusvisionx.gumroad.com/l/nexus-control" target="_blank" class="cta-button cta-primary">Upgrade to Premium - $4.99</a>
+                    <a href="https://nexusvisionxgmailcom.itch.io/nexus-tools-vpn" target="_blank" class="cta-button cta-secondary">Download Free Version</a>
+                </div>
+            </section>
+
+            <!-- Motto -->
+            <div class="motto">
+                "Privacy is not an extra option... It is the foundation"
+            </div>
+
+            <!-- Stats -->
+            <section class="stats-section">
+                <div class="sponsor">
+                    <div class="sponsor-label">Powered By</div>
+                    <div class="sponsor-name">NexusVisionX</div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3 id="visitors-count">1,200+</h3>
+                        <p>Active Users</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3 id="downloads-count">850+</h3>
+                        <p>Downloads</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>50+</h3>
+                        <p>Server Locations</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <div class="footer-links">
+                <a href="mailto:nexusvisionx@gmail.com">Contact</a>
+                <a href="#">Support</a>
+                <a href="#">Privacy Policy</a>
+            </div>
+            <p>© 2024 NexusVisionX. All rights reserved.</p>
+            <p style="margin-top: 10px; font-size: 12px;">Windows 10+ • 50MB Storage • 2GB RAM</p>
+        </footer>
     </div>
 
-</div>
+    <!-- Arabic Content -->
+    <div class="ar-content" dir="rtl">
+        <header>
+            <div class="logo-container">
+                <div class="logo-icon">🛡️</div>
+                <div class="logo-text">
+                    <h1>Nexus Tools VPN Setup</h1>
+                    <span>الإصدار 1.0.1 x64</span>
+                </div>
+            </div>
+            
+            <h2 class="tagline">حماية وخصوصية <span class="highlight">بلا تعقيد</span></h2>
+            <p class="subtitle">تطبيق VPN بسيط وسريع يهدف إلى حماية هويتك الرقمية وتأمين اتصالك بالإنترنت بنقرة واحدة فقط. بدون إعدادات معقدة أو خطوات طويلة.</p>
+            
+            <div class="badges">
+                <div class="badge">✓ اتصال بنقرة واحدة</div>
+                <div class="badge">✓ سياسة عدم التتبع</div>
+                <div class="badge">✓ خفيف وسريع</div>
+            </div>
+        </header>
 
-<div class="section">
-    <h2>Why Nexus Tools VPN?</h2>
-    <p>Simple, fast and secure VPN designed for privacy and performance.</p>
+        <div class="container">
+            <!-- Screenshot -->
+            <section class="screenshot-section">
+                <div class="screenshot-container">
+                    <div class="screenshot-glow"></div>
+                    <img src="nexus-vpn-screenshot.png" alt="واجهة Nexus Tools VPN Setup">
+                </div>
+            </section>
 
-    <p>
-        🔒 No logs policy • ⚡ Fast connection • 🌍 Global access
-    </p>
-</div>
+            <!-- Core Purpose -->
+            <section class="features-section">
+                <h2 class="section-title">لماذا Nexus Tools VPN؟</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🛡️</div>
+                        <h3>حماية الخصوصية</h3>
+                        <p>إخفاء عنوان IP الحقيقي، منع تتبع نشاطك على الإنترنت، وتقليل جمع البيانات من المواقع. خصوصيتك هي أولويتنا.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🔐</div>
+                        <h3>تأمين الاتصال</h3>
+                        <p>تشفير الاتصال بينك وبين الإنترنت. حماية البيانات عند استخدام شبكات WiFi العامة وتقليل مخاطر الاختراق أو التجسس.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>تجربة بسيطة</h3>
+                        <p>تشغيل بنقرة واحدة. بدون إعدادات معقدة أو معرفة تقنية مطلوبة. واجهة نظيفة وسهلة للجميع.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">🌍</div>
+                        <h3>وصول آمن للمحتوى</h3>
+                        <p>تصفح آمن من أي مكان، تقليل القيود الجغرافية على بعض الخدمات، واستمتع باتصال مستقر وسريع.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">👻</div>
+                        <h3>لا تتبع</h3>
+                        <p>نحن لا نتتبعك. نحن لا نحتفظ بسجلات نشاط تصفحك. يبقى نشاطك على الإنترنت خاصًا تمامًا.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon">💻</div>
+                        <h3>تصميم خفيف</h3>
+                        <p>سريع وخفيف على جهازك. استخدام موارد minimal مع الحفاظ على أقصى درجات الأمان والأداء.</p>
+                    </div>
+                </div>
+            </section>
 
-<div class="section">
-    <p>
-        🔒 Secure payment powered by Gumroad
-    </p>
-</div>
+            <!-- Comparison -->
+            <section class="comparison-section">
+                <h2 class="section-title">اختر خطتك</h2>
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <h3>🟢 النسخة المجانية</h3>
+                        <ul>
+                            <li><span class="check-icon">✓</span> اتصال VPN أساسي</li>
+                            <li><span class="check-icon">✓</span> مواقع سيرفر محدودة</li>
+                            <li><span class="check-icon">✓</span> سرعة قياسية</li>
+                            <li><span class="check-icon">✓</span> حماية أساسية</li>
+                        </ul>
+                    </div>
+                    <div class="comparison-card premium">
+                        <h3>🔵 النسخة المدفوعة</h3>
+                        <ul>
+                            <li><span class="check-icon">✓</span> جميع السيرفرات العالمية</li>
+                            <li><span class="check-icon">✓</span> سرعة عالية محسنة</li>
+                            <li><span class="check-icon">✓</span> أولوية في الأداء</li>
+                            <li><span class="check-icon">✓</span> حماية متقدمة</li>
+                            <li><span class="check-icon">✓</span> تجربة أكثر استقرارًا</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
 
-<div class="footer">
-    <p>© Nexus VisionX - All rights reserved</p>
-</div>
+            <!-- Target Audience -->
+            <section class="audience-section">
+                <h2 class="section-title">مثالي لـ</h2>
+                <div class="audience-grid">
+                    <div class="audience-card">
+                        <div class="icon">👨‍💻</div>
+                        <h4>مطوري البرامج</h4>
+                    </div>
+                    <div class="audience-card">
+                        <div class="icon">📱</div>
+                        <h4>مطوري التطبيقات</h4>
+                    </div>
+                    <div class="audience-card">
+                        <div class="icon">🔒</div>
+                        <h4>المهتمون بالخصوصية</h4>
+                    </div>
+                    <div class="audience-card">
+                        <div class="icon">☕</div>
+                        <h4>العاملون عن بُعد</h4>
+                    </div>
+                    <div class="audience-card">
+                        <div class="icon">✈️</div>
+                        <h4>المسافرون المتكررون</h4>
+                    </div>
+                    <div class="audience-card">
+                        <div class="icon">🏠</div>
+                        <h4>المستخدمون المنزليون</h4>
+                    </div>
+                </div>
+            </section>
 
+            <!-- Pricing -->
+            <section class="pricing-section">
+                <div class="pricing-card">
+                    <div class="pricing-badge">ترخيص بريميوم</div>
+                    <h3>Nexus Tools VPN Setup Pro</h3>
+                    <div class="price">$4.99</div>
+                    <p class="price-note">دفع لمرة واحدة • لا اشتراك • وصول مدى الحياة</p>
+                    
+                    <ul class="features-list">
+                        <li><span class="check-icon">✓</span> الوصول لجميع السيرفرات العالمية</li>
+                        <li><span class="check-icon">✓</span> اتصال عالي السرعة محسن</li>
+                        <li><span class="check-icon">✓</span> توجيه بأولوية الأداء</li>
+                        <li><span class="check-icon">✓</span> بروتوكولات تشفير متقدمة</li>
+                        <li><span class="check-icon">✓</span> بدون حدود للنطاق الترددي</li>
+                        <li><span class="check-icon">✓</span> دعم عملاء ذو أولوية</li>
+                        <li><span class="check-icon">✓</span> تحديثات مجانية مدى الحياة</li>
+                        <li><span class="check-icon">✓</span> لا سجلات، خصوصية 100%</li>
+                    </ul>
+                    
+                    <a href="https://nexusvisionx.gumroad.com/l/nexus-control" target="_blank" class="cta-button cta-primary">الترقية إلى بريميوم - $4.99</a>
+                    <a href="https://nexusvisionxgmailcom.itch.io/nexus-tools-vpn" target="_blank" class="cta-button cta-secondary">تحميل النسخة المجانية</a>
+                </div>
+            </section>
+
+            <!-- Motto -->
+            <div class="motto">
+                "خصوصيتك ليست خيارًا إضافيًا... بل هي الأساس"
+            </div>
+
+            <!-- Stats -->
+            <section class="stats-section">
+                <div class="sponsor">
+                    <div class="sponsor-label">تحت رعاية</div>
+                    <div class="sponsor-name">NexusVisionX</div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <h3 id="visitors-count-ar">1,200+</h3>
+                        <p>مستخدم نشط</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3 id="downloads-count-ar">850+</h3>
+                        <p>تحميل</p>
+                    </div>
+                    <div class="stat-item">
+                        <h3>50+</h3>
+                        <p>موقع سيرفر</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <footer>
+            <div class="footer-links">
+                <a href="mailto:nexusvisionx@gmail.com">تواصل معنا</a>
+                <a href="#">الدعم</a>
+                <a href="#">سياسة الخصوصية</a>
+            </div>
+            <p>© 2024 NexusVisionX. جميع الحقوق محفوظة</p>
+            <p style="margin-top: 10px; font-size: 12px;">Windows 10+ • 50MB مساحة • 2GB رام</p>
+        </footer>
+    </div>
+
+    <script>
+        function setLanguage(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.lang === lang) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            document.querySelectorAll('.en-content, .ar-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            if (lang === 'ar') {
+                document.querySelector('.ar-content').classList.add('active');
+                document.documentElement.dir = 'rtl';
+                document.documentElement.lang = 'ar';
+            } else {
+                document.querySelector('.en-content').classList.add('active');
+                document.documentElement.dir = 'ltr';
+                document.documentElement.lang = 'en';
+            }
+            
+            localStorage.setItem('preferred-lang', lang);
+        }
+        
+        const savedLang = localStorage.getItem('preferred-lang');
+        if (savedLang === 'ar') {
+            setLanguage('ar');
+        }
+        
+        function animateValue(id, start, end, duration) {
+            const obj = document.getElementById(id);
+            if (!obj) return;
+            
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                obj.innerHTML = value.toLocaleString() + '+';
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+        
+        window.addEventListener('load', () => {
+            animateValue('visitors-count', 0, 1200, 2000);
+            animateValue('downloads-count', 0, 850, 2000);
+            animateValue('visitors-count-ar', 0, 1200, 2000);
+            animateValue('downloads-count-ar', 0, 850, 2000);
+        });
+    </script>
 </body>
 </html>
